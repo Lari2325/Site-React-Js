@@ -5,6 +5,7 @@ import { SectionTitle, SectionDescription } from '../../../components/Typography
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend, PointElement } from 'chart.js';
 import { useDarkMode } from '../../../context/DarkModeContext';
+import { AboutViewModel } from '../../../viewmodels/HomeViewModel'; // Importe o ViewModel
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend, PointElement);
 
@@ -45,6 +46,7 @@ const AboutSection = styled.section<{ bgColor: string }>`
 
 const AboutContent = styled.div`
   width: 90%;
+  max-width: 1400px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -96,12 +98,12 @@ const CTAButton = styled.a<{ bgColor: string; textColor: string; hoverBgColor: s
   }
 `;
 
-const chartData = (chartColors: any) => ({
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+const chartData = (chartColors: any, data: number[], labels: string[]) => ({
+  labels: labels,
   datasets: [
     {
       label: 'Monthly Data',
-      data: [12, 19, 3, 5, 2, 3],
+      data: data,
       borderColor: chartColors.chartBorderColor,
       backgroundColor: chartColors.chartBackgroundColor,
       borderWidth: 2,
@@ -139,30 +141,34 @@ const chartOptions = {
 
 const AboutSectionComponent: React.FC = () => {
   const { isDarkMode } = useDarkMode();
-
   const currentColors = isDarkMode ? darkModeColors : defaultColors;
+
+  const aboutViewModel = new AboutViewModel(); // Instancie o ViewModel
 
   return (
     <AboutSection bgColor={currentColors.background}>
       <AboutContent>
         <AboutText textColor={currentColors.textColor}>
-          <SectionTitle>About Us</SectionTitle>
+          <SectionTitle>{aboutViewModel.getTitle()}</SectionTitle>
           <SectionDescription>
-            We are dedicated to providing the best services and solutions for our clients. Our team is committed to excellence and innovation, ensuring that we meet and exceed your expectations.
+            {aboutViewModel.getDescription()}
           </SectionDescription>
           <CTAButton 
-            href="https://wa.me/1234567890?text=Hello%20there!%20I'm%20interested%20in%20learning%20more%20about%20your%20services." 
+            href={aboutViewModel.getCtaLink()} 
             target="_blank" 
             rel="noopener noreferrer"
             bgColor={currentColors.ctaBackground} 
             textColor={currentColors.ctaText} 
             hoverBgColor={currentColors.ctaHoverBackground}
           >
-            Contact Us on WhatsApp
+            {aboutViewModel.getButtonText()}
           </CTAButton>
         </AboutText>
         <ChartContainer>
-          <Line data={chartData(currentColors)} options={chartOptions} />
+          <Line 
+            data={chartData(currentColors, aboutViewModel.getChartData(), aboutViewModel.getChartLabels())} 
+            options={chartOptions} 
+          />
         </ChartContainer>
       </AboutContent>
     </AboutSection>

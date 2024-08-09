@@ -1,3 +1,5 @@
+// src/components/PortfolioSection.tsx
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../../components/colors';
@@ -6,6 +8,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { useDarkMode } from '../../../context/DarkModeContext';
+import HomeViewModel from '../../../viewmodels/HomeViewModel';
 
 const defaultColors = {
     background: colors.white,
@@ -90,7 +93,7 @@ const ModalContainer = styled.div`
   background: rgba(0, 0, 0, 0.8); /* Transparent background */
   border-radius: 10px;
   width: 80%;
-  max-width: 800px;
+  max-width: 430px;
   padding: 20px;
   position: relative;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -112,6 +115,7 @@ const ModalImage = styled.img`
   width: 100%;
   height: auto;
   max-height: 75vh;
+    max-width: 400px;
   border-radius: 10px;
   margin-bottom: 15px;
   object-fit: cover;
@@ -122,7 +126,7 @@ const ContactButton = styled.a`
   background: ${colors.darkBlue};
   color: ${colors.white};
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 50px;
   text-decoration: none;
   font-size: 1rem;
   font-weight: bold;
@@ -134,7 +138,6 @@ const ContactButton = styled.a`
     background: ${colors.lightBlue};
   }
 `;
-
 
 const ContainerWhats = styled.div`
   width: 100%;
@@ -172,48 +175,11 @@ const WhatsAppCTAButton = styled.a`
 const PortfolioSection: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<any>(null);
 
-  const portfolioItems = [
-    {
-      id: 1,
-      imageUrl: 'https://via.placeholder.com/400',
-      title: 'Projeto 1',
-    },
-    {
-      id: 2,
-      imageUrl: 'https://via.placeholder.com/400',
-      title: 'Projeto 2',
-    },
-    {
-        id: 1,
-        imageUrl: 'https://via.placeholder.com/400',
-        title: 'Projeto 3',
-    },
-    {
-        id: 2,
-        imageUrl: 'https://via.placeholder.com/400',
-        title: 'Projeto 4',
-    },
-    {
-        id: 1,
-        imageUrl: 'https://via.placeholder.com/400',
-        title: 'Projeto 5',
-    },
-    {
-        id: 2,
-        imageUrl: 'https://via.placeholder.com/400',
-        title: 'Projeto 6',
-    },
-    {
-        id: 1,
-        imageUrl: 'https://via.placeholder.com/400',
-        title: 'Projeto 7',
-    },
-    {
-        id: 2,
-        imageUrl: 'https://via.placeholder.com/400',
-        title: 'Projeto 8',
-    },
-  ];
+  // Initialize HomeViewModel
+  const homeViewModel = new HomeViewModel();
+  const portfolioItems = homeViewModel.getPortfolioItems();
+  const portfolioTitle = homeViewModel.getPortfolioTitle();
+  const buttonText = homeViewModel.getButtonText();
 
   const handleItemClick = (item: any) => {
     setSelectedItem(item);
@@ -229,7 +195,7 @@ const PortfolioSection: React.FC = () => {
 
   return (
     <PortfolioSectionContainer bgColor={currentColors.background}>
-      <SectionTitle>Our Portfolio</SectionTitle>
+      <SectionTitle>{portfolioTitle}</SectionTitle>
       <PortfolioGrid>
         {portfolioItems.map(item => (
           <PortfolioItem key={item.id} bgCard={currentColors.backgroundCard} onClick={() => handleItemClick(item)}>
@@ -263,22 +229,22 @@ const PortfolioSection: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Contate-nos no WhatsApp
+              {buttonText}
             </ContactButton>
           </ModalContainer>
         </ModalBackground>
       )}
 
-        <ContainerWhats>
-          <WhatsAppCTAButton 
-            href="https://wa.me/5511999999999" 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <FaWhatsapp />
-            Fale Conosco
-          </WhatsAppCTAButton>
-        </ContainerWhats>
+      <ContainerWhats>
+        <WhatsAppCTAButton 
+          href="https://wa.me/5511999999999" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          <FaWhatsapp />
+          {buttonText}
+        </WhatsAppCTAButton>
+      </ContainerWhats>
     </PortfolioSectionContainer>
   );
 };

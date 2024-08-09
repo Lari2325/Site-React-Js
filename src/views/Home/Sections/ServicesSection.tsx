@@ -115,7 +115,7 @@ const ServicesSectionComponent: React.FC<{ viewModel: HomeViewModel }> = ({ view
   return (
     <ServicesSection bgColor={currentColors.background}>
       <ServicesContainer>
-        <SectionTitle>Our Services</SectionTitle>
+        <SectionTitle>{viewModel.getServicesTitle()}</SectionTitle>
         <CardsContainer>
           {viewModel.getServices().map((service, index) => (
             <ServiceCard key={index} bgColor={currentColors.cardBackground} textColor={currentColors.cardText}>

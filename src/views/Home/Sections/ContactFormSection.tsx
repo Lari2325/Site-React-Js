@@ -41,6 +41,7 @@ const ContactFormSection = styled.section<{ bgColor: string }>`
 
 const ContactFormContainer = styled.div<{ bgColor: string }>`
   width: 90%;
+  max-width: 1400px;
   background-color: ${({ bgColor }) => bgColor};
   border-radius: 8px;
   box-sizing: border-box; // Ensures padding and border are included in the element's total width and height

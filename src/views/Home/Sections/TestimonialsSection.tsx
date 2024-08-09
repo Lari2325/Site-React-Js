@@ -23,6 +23,7 @@ const TestimonialsSection = styled.section<{ bgColor: string }>`
 
 const TestimonialsContainer = styled.div`
   width: 90%;
+  max-width: 1400px;
   text-align: center;
 `;
 
