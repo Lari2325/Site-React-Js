@@ -117,20 +117,33 @@ const MissionVisionValuesSection: React.FC = () => {
     const viewModel = new AboutViewModel(); // Crie uma instância do AboutViewModel
 
     const currentColors = isDarkMode ? darkModeColors : defaultColors;
+    const missionVisionValues = viewModel.getMissionVisionValues();
 
     return (
         <MissionVisionValuesContainer backgroundColor={currentColors.sectionBackground}>
-            <SectionTitle>{viewModel.getTitle()}</SectionTitle>
+            <SectionTitle>Mission, Vision, and Values</SectionTitle>
             <ContainerCards>
-                {viewModel.getCards().map((card, index) => (
-                    <Card key={index} bgColor={currentColors.cardBackground}>
-                        <BoxIcon bgColor={currentColors.iconBackground}>
-                            {card.icon}
-                        </BoxIcon>
-                        <CardTitle color={currentColors.textColor}>{card.title}</CardTitle>
-                        <SectionDescription>{card.description}</SectionDescription>
-                    </Card>
-                ))}
+                <Card bgColor={currentColors.cardBackground}>
+                    <BoxIcon bgColor={currentColors.iconBackground}>
+                        {missionVisionValues.missionIcon}
+                    </BoxIcon>
+                    <CardTitle color={currentColors.textColor}>Mission</CardTitle>
+                    <SectionDescription>{missionVisionValues.mission}</SectionDescription>
+                </Card>
+                <Card bgColor={currentColors.cardBackground}>
+                    <BoxIcon bgColor={currentColors.iconBackground}>
+                        {missionVisionValues.visionIcon}
+                    </BoxIcon>
+                    <CardTitle color={currentColors.textColor}>Vision</CardTitle>
+                    <SectionDescription>{missionVisionValues.vision}</SectionDescription>
+                </Card>
+                <Card bgColor={currentColors.cardBackground}>
+                    <BoxIcon bgColor={currentColors.iconBackground}>
+                        {missionVisionValues.valuesIcon}
+                    </BoxIcon>
+                    <CardTitle color={currentColors.textColor}>Values</CardTitle>
+                    <SectionDescription>{missionVisionValues.values}</SectionDescription>
+                </Card>
             </ContainerCards>
 
             <ContainerWhats>
