@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import colors from '../../../components/colors';
 import HomeViewModel from '../../../viewmodels/HomeViewModel';
 import { useDarkMode } from '../../../context/DarkModeContext'; 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const defaultColors = {
   background: colors.darkBlue,
@@ -21,13 +23,12 @@ const darkModeColors = {
 };
 
 const BannerSection = styled.section<{ bgColor: string; textColor: string }>`
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${({ bgColor }) => bgColor};
   color: ${({ textColor }) => textColor};
-  padding: 100px 0;
+  padding: 100px 10px;
 `;
 
 const ContentContainer = styled.div`
@@ -66,11 +67,15 @@ const BannerSectionComponent: React.FC<{ viewModel: HomeViewModel }> = ({ viewMo
 
   const currentColors = isDarkMode ? darkModeColors : defaultColors;
 
+  useEffect(() => {
+    AOS.init();
+  }, [])
+
   return (
     <BannerSection bgColor={currentColors.background} textColor={currentColors.text}>
       <ContentContainer>
-        <HomeTitle>{viewModel.getTitle()}</HomeTitle>
-        <HomeDescription>{viewModel.getDescription()}</HomeDescription>
+        <HomeTitle data-aos="fade-up" data-aos-duration="1000">{viewModel.getTitle()}</HomeTitle>
+        <HomeDescription  data-aos="fade-up" data-aos-duration="1000">{viewModel.getDescription()}</HomeDescription>
         <HomeButton
           buttonBackground={currentColors.buttonBackground}
           buttonHover={currentColors.buttonHover}

@@ -1,5 +1,3 @@
-// src/models/HomeModel.ts
-
 export interface Service {
   title: string;
   imageUrl: string;
@@ -33,6 +31,29 @@ export interface AboutData {
   chartData: number[];
   chartLabels: string[];
   ctaLink: string;
+}
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  description: string;
+}
+
+export interface Testimonials {
+  title: string;
+  testimonials: Testimonial[];
+  button: string;
+}
+
+export interface Contact {
+  title: string;
+  description: string;
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  button: string;
 }
 
 const HomeModel: HomeData = {
@@ -118,5 +139,38 @@ const AboutModel: AboutData = {
   ctaLink: "https://wa.me/1234567890?text=Hello%20there!%20I'm%20interested%20in%20learning%20more%20about%20your%20services.",
 };
 
+const TestimonialsModel: Testimonials = {
+  title: "What Our Clients Say",
+  testimonials: [
+    {
+      id: '1',
+      name: 'Jane Doe',
+      description: '"The services provided were exceptional! The team was professional and attentive to all our needs. Highly recommend!"',
+    },
+    {
+      id: '2',
+      name: 'John Smith',
+      description: '"A fantastic experience from start to finish. The attention to detail and customer service were top-notch."',
+    },
+    {
+      id: '3',
+      name: 'Emily Johnson',
+      description: '"Very satisfied with the outcome. The team\'s expertise and dedication made all the difference."',
+    }
+  ],
+  button: 'Fale Conosco'
+};
+
+const ContactModel: Contact = {
+  title: 'Contact Us',
+  description: 'If you have any questions or need further information, please reach out to us through the form below.',
+  name: 'Name',
+  email: 'Email',
+  phone: 'Phone',
+  subject: 'Subject',
+  message: 'Message',
+  button: 'Send'
+};
+
 export default HomeModel;
-export { AboutModel };
+export { AboutModel, TestimonialsModel, ContactModel };

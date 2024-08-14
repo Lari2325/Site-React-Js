@@ -7,19 +7,24 @@ import Contact from './views/Contact/Contact';
 import Footer from './components/Footer';
 import WhatsAppFloatButton from './components/WhatsAppFloatButton';
 import { DarkModeProvider } from './context/DarkModeContext';
+import styled from 'styled-components';
+
+const Main = styled.main`
+  overflow: hidden;
+`;
 
 const App: React.FC = () => {
   return (
     <DarkModeProvider>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Navbar />
-        <main>
+        <Main>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
-        </main>
+        </Main>
         <Footer />
         <WhatsAppFloatButton />
       </Router>

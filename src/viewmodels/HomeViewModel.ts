@@ -1,5 +1,4 @@
-// src/viewmodels/HomeViewModel.ts
-import HomeModel, { HomeData, Service, AboutData, AboutModel, PortfolioItem } from '../models/HomeModel';
+import HomeModel, { HomeData, Service, AboutData, AboutModel, PortfolioItem, TestimonialsModel, Testimonials, Testimonial, Contact, ContactModel } from '../models/HomeModel';
 
 class HomeViewModel {
   private model: HomeData = HomeModel;
@@ -73,5 +72,53 @@ class PortfolioViewModel {
   }
 }
 
+class TestimonialsViewModel {
+  private model: Testimonials = TestimonialsModel;
+
+  getTitle(): string {
+    return this.model.title;
+  }
+
+  getTestimonials(): Testimonial[] {
+    return this.model.testimonials;
+  }
+
+  getButton(): string {
+    return this.model.button;
+  }
+}
+
+class ContactViewModel {
+  private model: Contact = ContactModel;
+
+  getTitle(): string {
+    return this.model.title;
+  }
+
+  getDescription(): string {
+    return this.model.description;
+  }
+
+  getNameLabel(): string {
+    return this.model.name;
+  }
+
+  getEmailLabel(): string {
+    return this.model.email;
+  }
+
+  getPhoneLabel(): string {
+    return this.model.phone;
+  }
+
+  getSubjectLabel(): string {
+    return this.model.subject;
+  }
+
+  getMessageLabel(): string {
+    return this.model.message;
+  }
+}
+
 export default HomeViewModel;
-export { AboutViewModel, PortfolioViewModel };
+export { AboutViewModel, PortfolioViewModel, TestimonialsViewModel, ContactViewModel };

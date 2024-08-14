@@ -7,6 +7,7 @@ import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
 import { useDarkMode } from '../../../context/DarkModeContext';
 import { FaWhatsapp } from 'react-icons/fa';
+import { TestimonialsViewModel } from '../../../viewmodels/HomeViewModel'; // Adjust the path if necessary
 
 const TestimonialsSection = styled.section<{ bgColor: string }>`
   width: 100%;
@@ -85,6 +86,11 @@ const WhatsAppCTAButton = styled.a`
 const TestimonialsSectionComponent: React.FC = () => {
   const { isDarkMode } = useDarkMode(); 
 
+  // Initialize the view model and fetch testimonials
+  const testimonialsViewModel = new TestimonialsViewModel();
+  const testimonials = testimonialsViewModel.getTestimonials();
+  const button = testimonialsViewModel.getButton();
+
   const currentColors = isDarkMode ? {
     background: colors.darkBackground,
     cardBackground: colors.darkCardBackground,
@@ -114,7 +120,7 @@ const TestimonialsSectionComponent: React.FC = () => {
   return (
     <TestimonialsSection bgColor={currentColors.background}>
       <TestimonialsContainer>
-        <SectionTitle>What Our Clients Say</SectionTitle>
+        <SectionTitle>{testimonialsViewModel.getTitle()}</SectionTitle>
         <Swiper
           ref={swiperRef}
           spaceBetween={30}
@@ -144,30 +150,18 @@ const TestimonialsSectionComponent: React.FC = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <SwiperSlide>
-            <TestimonialCard bgColor={currentColors.cardBackground} textColor={currentColors.textColor}>
-              <TestimonialText textColor={currentColors.textColor}>
-                "The services provided were exceptional! The team was professional and attentive to all our needs. Highly recommend!"
-              </TestimonialText>
-              <TestimonialAuthor authorColor={currentColors.authorColor}>Jane Doe</TestimonialAuthor>
-            </TestimonialCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <TestimonialCard bgColor={currentColors.cardBackground} textColor={currentColors.textColor}>
-              <TestimonialText textColor={currentColors.textColor}>
-                "A fantastic experience from start to finish. The attention to detail and customer service were top-notch."
-              </TestimonialText>
-              <TestimonialAuthor authorColor={currentColors.authorColor}>John Smith</TestimonialAuthor>
-            </TestimonialCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <TestimonialCard bgColor={currentColors.cardBackground} textColor={currentColors.textColor}>
-              <TestimonialText textColor={currentColors.textColor}>
-                "Very satisfied with the outcome. The team's expertise and dedication made all the difference."
-              </TestimonialText>
-              <TestimonialAuthor authorColor={currentColors.authorColor}>Emily Johnson</TestimonialAuthor>
-            </TestimonialCard>
-          </SwiperSlide>
+          {testimonials.map((testimonial) => (
+            <SwiperSlide key={testimonial.id}>
+              <TestimonialCard bgColor={currentColors.cardBackground} textColor={currentColors.textColor}>
+                <TestimonialText textColor={currentColors.textColor}>
+                  {testimonial.description}
+                </TestimonialText>
+                <TestimonialAuthor authorColor={currentColors.authorColor}>
+                  {testimonial.name}
+                </TestimonialAuthor>
+              </TestimonialCard>
+            </SwiperSlide>
+          ))}
         </Swiper>
         <ContainerWhats>
           <WhatsAppCTAButton 
@@ -176,7 +170,7 @@ const TestimonialsSectionComponent: React.FC = () => {
             rel="noopener noreferrer"
           >
             <FaWhatsapp />
-            Fale Conosco
+            {button}
           </WhatsAppCTAButton>
         </ContainerWhats>
       </TestimonialsContainer>

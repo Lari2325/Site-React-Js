@@ -5,6 +5,10 @@ import reportWebVitals from './reportWebVitals';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  ::-webkit-scrollbar { width: 3px; } 
+  ::-webkit-scrollbar-track { background-color: transparent; } 
+  ::-webkit-scrollbar-thumb { background-color: #000000; border-radius: 10px; box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.555); } 
+
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

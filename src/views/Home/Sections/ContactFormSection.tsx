@@ -1,8 +1,10 @@
+// src/views/Home/Sections/ContactFormSection.tsx
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from '../../../components/colors';
 import { SectionTitle, SectionDescription } from '../../../components/Typography';
 import { useDarkMode } from '../../../context/DarkModeContext';
+import { ContactModel } from '../../../models/HomeModel'; // Importe aqui
 
 const defaultColors = {
   background: colors.white,
@@ -146,14 +148,14 @@ const ContactFormSectionComponent: React.FC = () => {
   return (
     <ContactFormSection bgColor={currentColors.background}>
       <ContactFormContainer bgColor={currentColors.containerBackground}>
-        <SectionTitle>Contact Us</SectionTitle>
+        <SectionTitle>{ContactModel.title}</SectionTitle>
         <SectionDescription>
-          If you have any questions or need further information, please reach out to us through the form below.
+          {ContactModel.description}
         </SectionDescription>
         <form onSubmit={handleSubmit}>
           <FormRow>
             <FormGroup style={{ flex: 1 }}>
-              <FormLabel color={currentColors.labelColor} htmlFor="name">Name</FormLabel>
+              <FormLabel color={currentColors.labelColor} htmlFor="name">{ContactModel.name}</FormLabel>
               <FormInput
                 type="text"
                 id="name"
@@ -166,7 +168,7 @@ const ContactFormSectionComponent: React.FC = () => {
               />
             </FormGroup>
             <FormGroup style={{ flex: 1 }}>
-              <FormLabel color={currentColors.labelColor} htmlFor="email">Email</FormLabel>
+              <FormLabel color={currentColors.labelColor} htmlFor="email">{ContactModel.email}</FormLabel>
               <FormInput
                 type="email"
                 id="email"
@@ -181,7 +183,7 @@ const ContactFormSectionComponent: React.FC = () => {
           </FormRow>
           <FormRow>
             <FormGroup style={{ flex: 1 }}>
-              <FormLabel color={currentColors.labelColor} htmlFor="phone">Phone</FormLabel>
+              <FormLabel color={currentColors.labelColor} htmlFor="phone">{ContactModel.phone}</FormLabel>
               <FormInput
                 type="tel"
                 id="phone"
@@ -193,7 +195,7 @@ const ContactFormSectionComponent: React.FC = () => {
               />
             </FormGroup>
             <FormGroup style={{ flex: 1 }}>
-              <FormLabel color={currentColors.labelColor} htmlFor="subject">Subject</FormLabel>
+              <FormLabel color={currentColors.labelColor} htmlFor="subject">{ContactModel.subject}</FormLabel>
               <FormInput
                 type="text"
                 id="subject"
@@ -207,7 +209,7 @@ const ContactFormSectionComponent: React.FC = () => {
             </FormGroup>
           </FormRow>
           <FormGroup>
-            <FormLabel color={currentColors.labelColor} htmlFor="message">Message</FormLabel>
+            <FormLabel color={currentColors.labelColor} htmlFor="message">{ContactModel.message}</FormLabel>
             <FormTextarea
               id="message"
               name="message"
@@ -225,7 +227,7 @@ const ContactFormSectionComponent: React.FC = () => {
             hoverBackground={currentColors.buttonHoverBackground}
             textColor={currentColors.buttonText}
           >
-            Send
+            {ContactModel.button}
           </FormButton>
         </form>
       </ContactFormContainer>
