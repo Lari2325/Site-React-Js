@@ -1,32 +1,22 @@
 import React from 'react';
-import AboutViewModel from '../../viewmodels/AboutViewModel';
-import styled from 'styled-components';
-import colors from '../../components/colors';
-
-const AboutContainer = styled.div`
-  padding: 2rem;
-  background-color: ${colors.lightGray};
-  color: ${colors.darkGray};
-  text-align: center;
-`;
-
-const Title = styled.h1`
-  color: ${colors.darkBlue};
-`;
-
-const Description = styled.p`
-  font-size: 1.2rem;
-  color: ${colors.darkGray};
-`;
+import Banner from './Sections/BannerSection';
+import AboutSectionComponent from '../Home/Sections/AboutSection';
+import ContactFormSectionComponent from '../Home/Sections/ContactFormSection';
+import TestimonialsSectionComponent from '../Home/Sections/TestimonialsSection';
+import MissaoVisaoValoresSection from './Sections/MissaoVisaoValoresSection';
+import DifferencesSection from './Sections/DifferencesSection';
 
 const About: React.FC = () => {
-  const viewModel = new AboutViewModel();
 
   return (
-    <AboutContainer>
-      <Title>{viewModel.getTitle()}</Title>
-      <Description>{viewModel.getDescription()}</Description>
-    </AboutContainer>
+    <>
+      <Banner />
+      <AboutSectionComponent />
+      <MissaoVisaoValoresSection />
+      <TestimonialsSectionComponent />
+      <DifferencesSection />
+      <ContactFormSectionComponent />
+    </>
   );
 };
 
