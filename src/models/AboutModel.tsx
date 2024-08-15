@@ -24,11 +24,11 @@ export interface AboutData {
   differentialsDescricao: string;
   cards: AboutCardData[];
   missionVisionValues: MissionVisionValuesData;
-  missionVisionSectionTitle: string; // Adicionado
+  missionVisionSectionTitle: string; 
   cardTitles: {
-    mission: string; // Adicionado
-    vision: string;  // Adicionado
-    values: string;  // Adicionado
+    mission: string; 
+    vision: string;  
+    values: string;  
   };
   whatsAppLink: string;
   button : string;
@@ -63,8 +63,8 @@ const AboutModel: AboutData = {
     visionIcon: <MdOutlineVisibility size={50} color={colors.mediumBlue} />,
     valuesIcon: <MdOutlineGavel size={50} color={colors.mediumBlue} />,
   },
-  missionVisionSectionTitle: "Mission, Vision, and Values", // Adicionado
-  cardTitles: { // Adicionado
+  missionVisionSectionTitle: "Mission, Vision, and Values", 
+  cardTitles: { 
     mission: "Mission",
     vision: "Vision",
     values: "Values",

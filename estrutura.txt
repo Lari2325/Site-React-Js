@@ -24,9 +24,28 @@
                 -PortfolioSection.tsx
                 -ServicesSection.tsx
                 -TestimonialsSection.tsx
+                -styleds
+                    -AboutSectionStyled.ts
+                    -BannerSectionStyled.ts
+                    -ContactSectionStyled.ts
+                    -PortfolioSectionStyled.ts
+                    -ServicesSectionStyled.ts
+                    -TestimonialsSectionStyled.ts
             -Home.tsx
         -About
             -About.tsx
+            -Section
+                -BannerSection.tsx
+                -DifferencesSection.tsx 
+                -MissaoVisaoValoresSection.tsx
+                -styleds
+                    -BannerSectionStyled.ts
+                    -DifferencesSectionStyled.ts
+                    -MissaoVisaoValoresStyled.ts
         -Contact
             -Contact.tsx
+            -Section
+                -BannerSection.tsx
+                -styleds
+                    -BannerSectionStyled.ts
     App.tsx

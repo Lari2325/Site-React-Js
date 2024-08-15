@@ -9,4 +9,3 @@ const ContactModel: ContactData = {
 };
   
 export default ContactModel;
-  
