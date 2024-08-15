@@ -14,6 +14,7 @@ import { SectionTitle, SectionDescription } from '../../../components/Typography
 import { useDarkMode } from '../../../context/DarkModeContext';
 import { ContactModel } from '../../../models/HomeModel';
 
+
 const defaultColors = {
   background: colors.white,
   containerBackground: colors.white,
@@ -56,9 +57,22 @@ const ContactFormSectionComponent: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('Form data submitted:', formData);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      
+      const response = await fetch('https://lari2325.github.io/Site-React-Js/backend/send_mail.php', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams(formData as Record<string, string>).toString()
+      });
+
+      if (response.ok) {
+          console.log('Mensagem enviada com sucesso!');
+      } else {
+          console.error('Falha ao enviar a mensagem.');
+      }
   };
 
   return (
