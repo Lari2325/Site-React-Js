@@ -1,10 +1,18 @@
-// src/views/Home/Sections/ContactFormSection.tsx
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import { 
+  ContactFormSection, 
+  ContactFormContainer, 
+  FormGroup, 
+  FormRow, 
+  FormLabel, 
+  FormInput, 
+  FormTextarea, 
+  FormButton 
+} from './styleds/ContactSectionStyled'; 
 import colors from '../../../components/colors';
 import { SectionTitle, SectionDescription } from '../../../components/Typography';
 import { useDarkMode } from '../../../context/DarkModeContext';
-import { ContactModel } from '../../../models/HomeModel'; // Importe aqui
+import { ContactModel } from '../../../models/HomeModel';
 
 const defaultColors = {
   background: colors.white,
@@ -28,99 +36,8 @@ const darkModeColors = {
   buttonText: colors.lightGray,
 };
 
-const ContactFormSection = styled.section<{ bgColor: string }>`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 100px 0;
-  background-color: ${({ bgColor }) => bgColor};
-
-  @media (max-width: 768px) {
-    padding: 50px 0;
-  }
-`;
-
-const ContactFormContainer = styled.div<{ bgColor: string }>`
-  width: 90%;
-  max-width: 1400px;
-  background-color: ${({ bgColor }) => bgColor};
-  border-radius: 8px;
-  box-sizing: border-box; // Ensures padding and border are included in the element's total width and height
-  padding: 20px; // Add some padding inside the container
-`;
-
-const FormGroup = styled.div`
-  margin-bottom: 20px;
-`;
-
-const FormRow = styled.div`
-  display: flex;
-  gap: 20px; // Space between fields
-  margin-bottom: 20px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-const FormLabel = styled.label<{ color: string }>`
-  display: block;
-  font-size: 1rem;
-  color: ${({ color }) => color};
-  margin-bottom: 8px;
-`;
-
-const FormInput = styled.input<{ borderColor: string; focusBorderColor: string }>`
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid ${({ borderColor }) => borderColor};
-  border-radius: 4px;
-  box-sizing: border-box; // Ensures padding and border are included in the element's total width and height
-  transition: border-color 0.3s ease;
-
-  &:focus {
-    border-color: ${({ focusBorderColor }) => focusBorderColor};
-    outline: none;
-  }
-`;
-
-const FormTextarea = styled.textarea<{ borderColor: string; focusBorderColor: string }>`
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  border: 1px solid ${({ borderColor }) => borderColor};
-  border-radius: 4px;
-  resize: vertical;
-  box-sizing: border-box; // Ensures padding and border are included in the element's total width and height
-  transition: border-color 0.3s ease;
-
-  &:focus {
-    border-color: ${({ focusBorderColor }) => focusBorderColor};
-    outline: none;
-  }
-`;
-
-const FormButton = styled.button<{ background: string; hoverBackground: string; textColor: string }>`
-  font-size: 1.2rem;
-  color: ${({ textColor }) => textColor};
-  background: ${({ background }) => background};
-  border: none;
-  padding: 12px 20px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.3s ease;
-
-  &:hover {
-    background: ${({ hoverBackground }) => hoverBackground};
-  }
-`;
-
 const ContactFormSectionComponent: React.FC = () => {
-  const { isDarkMode } = useDarkMode(); // Usa o hook para acessar o estado do modo escuro
-
-  // Seleciona as cores baseadas no modo escuro ou claro
+  const { isDarkMode } = useDarkMode();
   const currentColors = isDarkMode ? darkModeColors : defaultColors;
 
   const [formData, setFormData] = useState({
@@ -141,7 +58,6 @@ const ContactFormSectionComponent: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to server)
     console.log('Form data submitted:', formData);
   };
 

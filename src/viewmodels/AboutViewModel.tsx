@@ -23,8 +23,24 @@ class AboutViewModel {
     return this.model.missionVisionValues;
   }
 
+  getMissionVisionSectionTitle(): string {
+    return this.model.missionVisionSectionTitle; // Método adicionado
+  }
+
+  getCardTitles(): { // Método adicionado
+    mission: string;
+    vision: string;
+    values: string;
+  } {
+    return this.model.cardTitles;
+  }
+
   getWhatsAppLink(): string {
     return this.model.whatsAppLink;
+  }
+
+  getButtonMissionVisionSection(): string {
+    return this.model.button;
   }
 }
 
