@@ -2,7 +2,7 @@
 
 Este é um site desenvolvido utilizando React.js. Você pode visualizar o site no link abaixo:
 
-🔗 [Visite o Site](https://lari2325.github.io/Site-React-Js/)
+🔗 [Visite o Site](https://larissabiancarochaa.github.io/Site-React-Js/)
 
 ## Sobre
 
@@ -12,4 +12,4 @@ Este projeto é uma demonstração de como criar um site moderno utilizando a bi
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/lari2325/Site-React-Js.git
+   git clone https://github.com/larissabiancarochaa/Site-React-Js.git
